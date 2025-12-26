@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.IO;
 using Tyuiu.RadkoVO.Sprint5.Task7.V27.Lib;
 
@@ -25,8 +24,8 @@ namespace Tyuiu.RadkoVO.Sprint5.Task7.V27
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                        *");
             Console.WriteLine("***************************************************************************");
 
-            string path = @"C:\DataSprint5\InPutDataFileTask7V27.txt";
-            string pathSaveFile = @"C:\DataSprint5\OutPutDataFileTask7V27.txt";
+            string path = Path.Combine(@"C:\", "DataSprint5", "InPutDataFileTask7V27.txt");
+            string pathSaveFile = Path.Combine(@"C:\", "DataSprint5", "InPutDataFileTask7V27.txt");
 
             Console.WriteLine("Данные находятся в файле: " + path);
 
@@ -34,25 +33,11 @@ namespace Tyuiu.RadkoVO.Sprint5.Task7.V27
             Console.WriteLine("* РЕЗУЛЬТАТ:                                                              *");
             Console.WriteLine("***************************************************************************");
 
-            try
-            {
-                DataService ds = new DataService();
-
-                Console.WriteLine("Находится в файле: ");
-                pathSaveFile = ds.LoadDataAndSave(path);
-                Console.WriteLine(pathSaveFile);
-
-                Console.WriteLine("\nПроверка результата:");
-                if (File.Exists(pathSaveFile))
-                {
-                    Console.WriteLine("Содержимое выходного файла:");
-                    Console.WriteLine(File.ReadAllText(pathSaveFile));
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Ошибка: " + ex.Message);
-            }
+            
+            Console.WriteLine("Находится в файле: ");
+            DataService ds = new DataService();
+            pathSaveFile = ds.LoadDataAndSave(path);
+            Console.WriteLine(pathSaveFile);
 
             Console.ReadKey();
         }
