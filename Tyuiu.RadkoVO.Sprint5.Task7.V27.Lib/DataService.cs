@@ -25,31 +25,22 @@ namespace Tyuiu.RadkoVO.Sprint5.Task7.V27.Lib
 
                 while ((line = reader.ReadLine()) != null)
                 {
-                    bool previousWasSpace = false;
-
+                    // УДАЛЯЕМ ВСЕ ПРОБЕЛЫ, а не только лишние
                     for (int i = 0; i < line.Length; i++)
                     {
                         char c = line[i];
 
-                        if (c == ' ')
-                        {
-                            if (!previousWasSpace)
-                            {
-                                strLine += c;
-                            }
-                            previousWasSpace = true;
-                        }
-                        else
+                        // Если символ НЕ пробел - добавляем его
+                        if (c != ' ')
                         {
                             strLine += c;
-                            previousWasSpace = false;
                         }
+                        // Пробелы просто пропускаем
                     }
 
                     File.AppendAllText(pathSaveFile, strLine + Environment.NewLine);
                     strLine = "";
                 }
-
             }
 
             return pathSaveFile;
